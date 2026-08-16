@@ -1,599 +1,327 @@
-/* ==========================================================================
-   RESET & VARIÁVEIS GLOBAIS
-   ========================================================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --primary-orange: #e9540c;
-    --primary-orange-dark: #832f07;
-    --primary-white: #ffffff;
-    --accent-gold: #f6dca6;
-    --bg-dark: #0d0d0d;
-    --font-primary: 'Science Gothic', sans-serif;
-    --font-secondary: 'Inter', sans-serif;
-}
-
-body {
-    background-color: var(--bg-dark);
-    background-image: url('assets/bg_vort.png'); 
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-attachment: scroll;
-    color: var(--primary-white);
-    font-family: var(--font-primary);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px 16px;
-}
-
-.main-container {
-    width: 100%;
-    max-width: 389px;
-    display: flex;
-    flex-direction: column;
-}
-
-/* --- TELA & TRANSIÇÕES --- */
-.screen {
-    display: none;
-    width: 100%;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.screen.active {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    opacity: 1;
-}
-
-/* ==========================================================================
-   TELA 1: HOME
-   ========================================================================== */
-.hero-section {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.hero-title {
-    font-size: 1.85rem;
-    font-weight: 400;
-    line-height: 1.25;
-    letter-spacing: -0.02em;
-    color: var(--primary-white);
-    text-transform: uppercase;
-}
-
-.hero-title .highlight, 
-.projects-title .highlight, 
-.card-title-group h2.highlight,
-.sub-title-main .highlight,
-.custom-title .highlight {
-    color: var(--primary-orange);
-}
-
-.hero-subtitle {
-    font-size: 0.85rem;
-    font-weight: 200;
-    letter-spacing: 0.15em;
-    color: var(--primary-white);
-    margin-top: 14px;
-    text-transform: uppercase;
-}
-
-/* Projetos Destaques */
-.card-projects-glass {
-    width: 100%;
-    background: rgba(13, 13, 13, 0.45);
-    backdrop-filter: blur(15px) saturate(180%);
-    -webkit-backdrop-filter: blur(15px) saturate(180%);
-    border-radius: 13.75px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 24px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-}
-
-.projects-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.projects-icon {
-    width: 16px;
-    height: auto;
-}
-
-.projects-title {
-    font-size: 1.2rem;
-    font-weight: 300;
-    letter-spacing: -0.06em;
-    color: var(--primary-white);
-}
-
-.projects-description {
-    font-family: var(--font-secondary);
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.03em;
-    color: var(--primary-white);
-    text-align: center;
-    padding: 0 20px;
-    margin-top: 12px;
-    margin-bottom: 24px;
-}
-
-/* Container que esconde o que passa dos limites da tela */
-.carousel-container {
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px 0;
-}
-
-/* Trilhos das fileiras */
-.marquee-row {
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.marquee-track {
-    display: flex;
-    width: max-content;
-    gap: 15px;
-}
-
-/* TAMANHO DAS IMAGENS: Ajuste a altura aqui se quiser maior ou menor */
-.project-img {
-    height: 180px !important;  /* Limita a altura para não ficar gigante */
-    width: auto !important;    /* Mantém a proporção original */
-    max-width: 100% !important;
-    object-fit: cover !important;
-    border-radius: 12px;
-}
-
-/* ANIMAÇÃO DOS MOVIMENTOS */
-.slide-right .marquee-track {
-    animation: marqueeRight 15s linear infinite;
-}
-
-.slide-left .marquee-track {
-    animation: marqueeLeft 15s linear infinite;
-}
-
-@keyframes marqueeRight {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0%); }
-}
-
-@keyframes marqueeLeft {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
-}
-/* Card Fluxo Atendimento */
-.card-glass {
-    background: rgba(13, 13, 13, 0.45);
-    backdrop-filter: blur(15px) saturate(180%);
-    -webkit-backdrop-filter: blur(15px) saturate(180%);
-    border-radius: 13.75px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.card-title-group h2 {
-    font-size: 1.65rem;
-    font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: -0.06em;
-    color: var(--primary-white);
-}
-
-.card-logo {
-    width: 49px;
-    height: auto;
-}
-
-.card-description {
-    font-family: var(--font-secondary);
-    font-size: 0.6rem;
-    font-weight: 400;
-    letter-spacing: 0.03em;
-    color: var(--primary-white);
-}
-
-.card-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.btn-disabled {
-    flex: 1;
-    height: 38px;
-    background: rgba(13, 13, 13, 0.6);
-    backdrop-filter: blur(10px);
-    border-radius: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    color: var(--accent-gold);
-    font-family: var(--font-secondary);
-    font-size: 0.68rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.btn-arrow {
-    width: 38px;
-    height: 38px;
-    background: var(--primary-orange);
-    border: none;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.btn-arrow:hover {
-    transform: scale(1.05);
-    background: #ff6017;
-}
-
-.btn-arrow img {
-    width: 18px;
-    height: 18px;
-}
-
-/* Footer Glass */
-.footer-glass {
-    background: rgba(13, 13, 13, 0.45);
-    backdrop-filter: blur(15px) saturate(180%);
-    -webkit-backdrop-filter: blur(15px) saturate(180%);
-    border-radius: 13.75px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-}
-
-.footer-title {
-    font-size: 0.88rem;
-    font-weight: 400;
-    letter-spacing: -0.06em;
-    color: var(--accent-gold);
-}
-
-.contact-list {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.contact-item {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.contact-link {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    text-decoration: none;
-    font-family: var(--font-secondary);
-    font-size: 0.55rem;
-    font-weight: 600;
-    letter-spacing: -0.06em;
-    background: linear-gradient(90deg, #e9540c 0%, #832f07 50%, #e9540c 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.contact-icon {
-    width: 10px;
-    height: 10px;
-}
-
-.contact-info {
-    font-family: var(--font-secondary);
-    font-size: 0.57rem;
-    font-weight: 400;
-    letter-spacing: -0.06em;
-    color: var(--primary-white);
-}
-
-/* ==========================================================================
-   TELA 2: ATENDIMENTO
-   ========================================================================== */
-.atendimento-header {
-    display: flex;
-    align-items: center;
-    position: relative;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.btn-back {
-    position: absolute;
-    left: 0;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding: 4px;
-}
-
-.btn-back img {
-    width: 18.93px;
-    height: 17.26px;
-    object-fit: contain;
-}
-
-.atendimento-title {
-    font-size: 29.87px;
-    font-weight: 400;
-    background: linear-gradient(180deg, #e9540c 0%, #832f07 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
-}
-
-/* Subtítulo */
-.atendimento-subtitle-group {
-    margin-top: 20px; /* Spacing aproximado */
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.sub-title-main {
-    font-size: 13.77px;
-    font-weight: 500;
-    color: var(--primary-white);
-}
-
-.sub-title-desc {
-    font-size: 9.98px;
-    font-weight: 300;
-    color: var(--primary-white);
-    opacity: 0.9;
-}
-
-/* Lista de Categorias (Accordion) */
-.categories-list {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.category-card {
-    background: rgba(13, 13, 13, 0.45);
-    backdrop-filter: blur(15px) saturate(180%);
-    -webkit-backdrop-filter: blur(15px) saturate(180%);
-    border-radius: 13.75px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.category-header {
-    padding: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-}
-
-.category-info {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.category-title {
-    font-size: 14.03px;
-    font-weight: 400;
-    color: var(--primary-white);
-}
-
-.category-desc {
-    font-family: var(--font-secondary);
-    font-size: 8.35px;
-    font-weight: 400;
-    color: var(--primary-white);
-    opacity: 0.8;
-}
-
-.btn-toggle-category {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.toggle-icon {
-    width: 23.83px;
-    height: 23.83px;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-}
-
-.category-card.open .toggle-icon {
-    transform: rotate(180deg);
-}
-
-.category-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
-}
-
-.category-card.open .category-content {
-    max-height: 500px; /* Permite expansão */
-    transition: max-height 0.4s ease-in-out;
-}
-
-.services-list {
-    padding: 0 16px 20px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px; /* 12px de espaçamento entre opções */
-}
-
-.service-item {
-    font-family: var(--font-secondary);
-    font-size: 13.98px;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    color: var(--primary-white);
-    text-decoration: none;
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: color 0.2s ease, padding-left 0.2s ease;
-    display: block;
-}
-
-.service-item:hover {
-    color: var(--primary-orange);
-    padding-left: 4px;
-}
-
-/* Seção Formulário Customizado */
-.custom-request-section {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    padding-bottom: 40px;
-}
-
-.custom-request-header {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.custom-title {
-    font-size: 13.77px;
-    font-weight: 500;
-    color: var(--primary-white);
-}
-
-.custom-bold {
-    font-family: var(--font-secondary);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    color: var(--primary-white);
-}
-
-.custom-desc {
-    font-family: var(--font-secondary);
-    font-size: 11px;
-    font-weight: 400;
-    color: var(--primary-white);
-    opacity: 0.9;
-}
-
-/* Estilo do Formulário */
-.atendimento-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.form-label {
-    font-family: var(--font-secondary);
-    font-size: 16.29px;
-    font-weight: 700;
-    color: var(--primary-white);
-}
-
-.form-input, .form-textarea {
-    width: 100%;
-    background: rgba(13, 13, 13, 0.45);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8.33px;
-    padding: 10px 12px;
-    color: var(--primary-white);
-    font-family: var(--font-secondary);
-    font-size: 12px;
-    outline: none;
-    transition: border-color 0.2s ease;
-}
-
-.form-input {
-    height: 35.81px;
-}
-
-.form-textarea {
-    min-height: 109.53px;
-    resize: vertical;
-}
-
-.form-input:focus, .form-textarea:focus {
-    border-color: var(--primary-orange);
-}
-
-.btn-submit {
-    width: 100%;
-    height: 44px;
-    background: var(--primary-orange);
-    border: none;
-    border-radius: 8.33px;
-    color: var(--primary-white);
-    font-family: var(--font-primary);
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
-    margin-top: 10px;
-}
-
-.btn-submit:hover {
-    background: #ff6017;
-    transform: translateY(-2px);
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VORT Studio | Atendimento</title>
+
+<!-- Tags para redes sociais e WhatsApp -->
+<meta property="og:title" content="VORT Studio | Atendimento">
+<meta property="og:description" content="Design que move ideias. Solicite seu projeto de forma simples e organizada.">
+<meta property="og:image" content="https://seudominio.com/assets/share-preview.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Science+Gothic:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="main-container">
+
+        <!-- ===================================================================
+             TELA 1: HOME
+             =================================================================== -->
+        <section id="screen-home" class="screen active">
+            <!-- Hero Title Section -->
+            <section class="hero-section">
+                <h1 class="hero-title">
+                    DESIGN QUE <br>
+                    <span class="highlight">MOVE</span> IDEIAS.
+                </h1>
+                <p class="hero-subtitle">VISUAL / DESIGN / CULTURE</p>
+            </section>
+
+            <!-- Seção Projetos Destaques -->
+            <section class="card-projects-glass">
+                <div class="projects-header">
+                    <img src="assets/icon_project.png" alt="Projetos" class="projects-icon">
+                    <h2 class="projects-title">
+                        <span class="highlight">PROJETOS</span> DESTAQUES
+                    </h2>
+                </div>
+
+                <p class="projects-description">
+                    Uma seleção de projetos que traduzem ideias em identidade visual.
+                </p>
+
+<!-- Carrossel Infinito (Marquee) -->
+<div class="carousel-container">
+    <!-- Fileira 1: VORT -->
+    <div class="marquee-row slide-right">
+        <div class="marquee-track">
+            <img src="assets/project_vort.png" alt="Projeto VORT" class="project-img">
+        </div>
+    </div>
+
+    <!-- Fileira 2: Velouté -->
+    <div class="marquee-row slide-left">
+        <div class="marquee-track">
+            <img src="assets/project_veloute.png" alt="Projeto Velouté" class="project-img">
+        </div>
+    </div>
+
+    <!-- Fileira 3: Lumina Café -->
+    <div class="marquee-row slide-right">
+        <div class="marquee-track">
+            <img src="assets/project_lumina.png" alt="Projeto Lumina" class="project-img">
+        </div>
+    </div>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Card Fluxo de Atendimento -->
+            <section class="card-glass">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <h2>FLUXO DE</h2>
+                        <h2 class="highlight">ATENDIMENTO</h2>
+                    </div>
+                    <img src="assets/logo_metalic.png" alt="VORT Logo" class="card-logo">
+                </div>
+
+                <p class="card-description">
+                    Solicite o seu projeto de forma simples e organizada.
+                </p>
+
+                <div class="card-actions">
+                    <a href="#" class="btn-disabled">SOLICITAR PROJETO</a>
+                    <!-- Botão que abre a Tela 2 -->
+                    <button id="btn-go-atendimento" class="btn-arrow" aria-label="Acessar Atendimento">
+                        <img src="assets/icon_arrow.png" alt="Acessar">
+                    </button>
+                </div>
+            </section>
+
+            <!-- Rodapé Contatos -->
+            <footer class="footer-glass">
+                <h3 class="footer-title">CONTATOS</h3>
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <a href="https://wa.me/5573999049586" target="_blank" class="contact-link">
+                            <img src="assets/icon_whatsapp.png" alt="WhatsApp" class="contact-icon">
+                            <span class="contact-label">WhatsApp</span>
+                        </a>
+                        <p class="contact-info">(73) 99904-9586</p>
+                    </div>
+                    <div class="contact-item">
+                        <a href="https://instagram.com/heyvort" target="_blank" class="contact-link">
+                            <img src="assets/icon_instagram.png" alt="Instagram" class="contact-icon">
+                            <span class="contact-label">Instagram</span>
+                        </a>
+                        <p class="contact-info">@heyvort</p>
+                    </div>
+                    <div class="contact-item">
+                        <a href="mailto:heyvort001@gmail.com" class="contact-link">
+                            <img src="assets/icon_email.png" alt="Email" class="contact-icon">
+                            <span class="contact-label">Email</span>
+                        </a>
+                        <p class="contact-info">heyvort001@gmail.com</p>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+
+        <!-- ===================================================================
+             TELA 2: ATENDIMENTO (CATEGORIAS E FORMULÁRIO)
+             =================================================================== -->
+        <section id="screen-atendimento" class="screen">
+            <!-- Topo com botão Back Home e Título -->
+            <header class="atendimento-header">
+                <button id="btn-back-home" class="btn-back" aria-label="Voltar para Home">
+                    <img src="assets/icon_back_home.png" alt="Voltar Home">
+                </button>
+                <h1 class="atendimento-title">ATENDIMENTO</h1>
+            </header>
+
+            <!-- Subtítulo -->
+            <div class="atendimento-subtitle-group">
+                <h2 class="sub-title-main">O QUE VOCÊ <span class="highlight">PROCURA?</span></h2>
+                <p class="sub-title-desc">Encontre o serviço que melhor combina com o que esteja buscando.</p>
+            </div>
+
+            <!-- Categorias Accordion -->
+            <div class="categories-list">
+
+                <!-- 1. IDENTIDADE VISUAL -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-info">
+                            <h3 class="category-title">IDENTIDADE VISUAL</h3>
+                            <p class="category-desc">Crie a marca perfeita e marcante para o seu negócio.</p>
+                        </div>
+                        <button class="btn-toggle-category" aria-label="Expandir Categoria">
+                            <img src="assets/btn_more_services.png" alt="Abrir" class="toggle-icon">
+                        </button>
+                    </div>
+                    <div class="category-content">
+                        <div class="services-list">
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Logo%20%28Identidade%20Visual%29." target="_blank" class="service-item">Logo</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20S%C3%ADmbolo%20%2F%20%C3%8Dcone." target="_blank" class="service-item">Símbolo / Ícone</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Paleta%20de%20cores." target="_blank" class="service-item">Paleta de cores</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Tipografia." target="_blank" class="service-item">Tipografia</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20completo%20de%20Identidade%20Visual." target="_blank" class="service-item">Identidade Visual</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Aplica%C3%A7%C3%B5es%20de%20Marca." target="_blank" class="service-item">Aplicações</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. MÍDIA SOCIAL -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-info">
+                            <h3 class="category-title">MÍDIA SOCIAL</h3>
+                            <p class="category-desc">Visual estratégico para dar destaque à sua rede social.</p>
+                        </div>
+                        <button class="btn-toggle-category" aria-label="Expandir Categoria">
+                            <img src="assets/btn_more_services.png" alt="Abrir" class="toggle-icon">
+                        </button>
+                    </div>
+                    <div class="category-content">
+                        <div class="services-list">
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Post%20Social%20Media." target="_blank" class="service-item">Post</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Story." target="_blank" class="service-item">Story</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Carrossel." target="_blank" class="service-item">Carrossel</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Capas%20de%20Destaques." target="_blank" class="service-item">Destaques</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Kit%20de%20Redes%20Sociais." target="_blank" class="service-item">Kit de redes sociais</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. MATERIAIS IMPRESSOS -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-info">
+                            <h3 class="category-title">MATERIAIS IMPRESSOS</h3>
+                            <p class="category-desc">Papelaria e materiais para apresentação de alto impacto.</p>
+                        </div>
+                        <button class="btn-toggle-category" aria-label="Expandir Categoria">
+                            <img src="assets/btn_more_services.png" alt="Abrir" class="toggle-icon">
+                        </button>
+                    </div>
+                    <div class="category-content">
+                        <div class="services-list">
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Cart%C3%A3o%20de%20visita." target="_blank" class="service-item">Cartão de visita</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Folder%20%2F%20Flyer." target="_blank" class="service-item">Folder / Flyer</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Cartaz%20%2F%20Banner." target="_blank" class="service-item">Cartaz / Banner</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Outdoor." target="_blank" class="service-item">Outdoor</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. EMBALAGENS E ETIQUETAS -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-info">
+                            <h3 class="category-title">EMBALAGENS E ETIQUETAS</h3>
+                            <p class="category-desc">Design de embalagens para encantar e valorizar seu produto.</p>
+                        </div>
+                        <button class="btn-toggle-category" aria-label="Expandir Categoria">
+                            <img src="assets/btn_more_services.png" alt="Abrir" class="toggle-icon">
+                        </button>
+                    </div>
+                    <div class="category-content">
+                        <div class="services-list">
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Etiqueta." target="_blank" class="service-item">Etiqueta</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Embalagem." target="_blank" class="service-item">Embalagem</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Sacola%20%2F%20Caixa." target="_blank" class="service-item">Sacola / Caixa</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. CONVITES -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-info">
+                            <h3 class="category-title">CONVITES</h3>
+                            <p class="category-desc">Design exclusivo e elegante para momentos especiais.</p>
+                        </div>
+                        <button class="btn-toggle-category" aria-label="Expandir Categoria">
+                            <img src="assets/btn_more_services.png" alt="Abrir" class="toggle-icon">
+                        </button>
+                    </div>
+                    <div class="category-content">
+                        <div class="services-list">
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Convite%20Digital." target="_blank" class="service-item">Convite digital</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Convite%20para%20Impress%C3%A3o." target="_blank" class="service-item">Convite para impressão</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Kit%20de%20Convites." target="_blank" class="service-item">Kit de convite</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. CARDÁPIOS -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <div class="category-info">
+                            <h3 class="category-title">CARDÁPIOS</h3>
+                            <p class="category-desc">Design profissional para apresentação do seu menu.</p>
+                        </div>
+                        <button class="btn-toggle-category" aria-label="Expandir Categoria">
+                            <img src="assets/btn_more_services.png" alt="Abrir" class="toggle-icon">
+                        </button>
+                    </div>
+                    <div class="category-content">
+                        <div class="services-list">
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Card%C3%A1pio%20Digital." target="_blank" class="service-item">Cardápio digital</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Card%C3%A1pio%20para%20Impress%C3%A3o." target="_blank" class="service-item">Cardápio para impressão</a>
+                            <a href="https://wa.me/5573999049586?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20Tabela%20de%20Pre%C3%A7os." target="_blank" class="service-item">Tabela de preços</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Seção "Não Encontrou o Que Precisa?" & Formulário -->
+            <section class="custom-request-section">
+                <div class="custom-request-header">
+                    <h2 class="custom-title">NÃO ENCONTROU O QUE <span class="highlight">PRECISA?</span></h2>
+                    <p class="custom-bold">Nem todo projeto cabe em uma categoria.</p>
+                    <p class="custom-desc">Conte o que você está pensando e vamos encontrar a melhor solução para o seu projeto.</p>
+                </div>
+
+                <!-- Formulário -->
+                <form id="contact-form" class="atendimento-form">
+                    <div class="form-group">
+                        <label for="form-nome" class="form-label">Nome</label>
+                        <input type="text" id="form-nome" class="form-input" required placeholder="Seu nome completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-email" class="form-label">E-mail</label>
+                        <input type="email" id="form-email" class="form-input" required placeholder="seuemail@exemplo.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-whatsapp" class="form-label">Whatsapp</label>
+                        <input type="tel" id="form-whatsapp" class="form-input" required placeholder="(00) 00000-0000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-descricao" class="form-label">O que você precisa?</label>
+                        <textarea id="form-descricao" class="form-textarea" required placeholder="Descreva sua ideia ou projeto..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-prazo" class="form-label">Prazo desejado</label>
+                        <input type="text" id="form-prazo" class="form-input" placeholder="Ex: 15 dias, urgente, etc.">
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        ENVIAR SOLICITAÇÃO
+                    </button>
+                </form>
+            </section>
+        </section>
+
+    </main>
+
+    <!-- Script de Interatividade -->
+    <script src="js/main.js"></script>
+</body>
+</html>

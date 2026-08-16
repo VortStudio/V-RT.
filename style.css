@@ -134,51 +134,56 @@ body {
     margin-bottom: 24px;
 }
 
-/* Carrossel Marquee */
+/* Container que esconde o que passa dos limites da tela */
 .carousel-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.marquee-row {
     width: 100%;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 0;
+}
+
+/* Trilhos das fileiras */
+.marquee-row {
+    width: 100%;
+    overflow: hidden;
     white-space: nowrap;
 }
 
 .marquee-track {
     display: flex;
-    align-items: center;
-    gap: 2px;
     width: max-content;
+    gap: 15px;
 }
 
+/* TAMANHO DAS IMAGENS: Ajuste a altura aqui se quiser maior ou menor */
 .project-img {
-    height: 151px !important;
-    width: auto;
-    min-width: 120px;
-    max-width: 220px;
-    object-fit: cover;
-    display: block;
-    flex-shrink: 0;
+    height: 180px !important;  /* Limita a altura para não ficar gigante */
+    width: auto !important;    /* Mantém a proporção original */
+    max-width: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px;
 }
 
-.slide-right .marquee-track { animation: scrollRight 30s linear infinite; }
-.slide-left .marquee-track { animation: scrollLeft 30s linear infinite; }
+/* ANIMAÇÃO DOS MOVIMENTOS */
+.slide-right .marquee-track {
+    animation: marqueeRight 15s linear infinite;
+}
 
-@keyframes scrollRight {
+.slide-left .marquee-track {
+    animation: marqueeLeft 15s linear infinite;
+}
+
+@keyframes marqueeRight {
     0% { transform: translateX(-50%); }
     100% { transform: translateX(0%); }
 }
 
-@keyframes scrollLeft {
+@keyframes marqueeLeft {
     0% { transform: translateX(0%); }
     100% { transform: translateX(-50%); }
 }
-
 /* Card Fluxo Atendimento */
 .card-glass {
     background: rgba(13, 13, 13, 0.45);

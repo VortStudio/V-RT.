@@ -4,10 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const screenHome = document.getElementById('screen-home');
     const screenAtendimento = document.getElementById('screen-atendimento');
     
-    const btnGoAtendimento = document.getElementById('btn-go-atendimento');
+    // Busca o botão pelo id ou pela classe da seta
+    const btnGoAtendimento = document.getElementById('btn-go-atendimento') || document.querySelector('.btn-next-screen');
     const btnBackHome = document.getElementById('btn-back-home');
 
     function showScreen(screenToShow) {
+        if (!screenHome || !screenAtendimento) return;
+
         // Esconde todas as telas
         screenHome.classList.remove('active');
         screenAtendimento.classList.remove('active');
@@ -36,16 +39,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     categoryCards.forEach(card => {
         const header = card.querySelector('.category-header');
-        header.addEventListener('click', () => {
-            // Se quiser fechar os outros ao abrir um novo:
-            categoryCards.forEach(otherCard => {
-                if (otherCard !== card) {
-                    otherCard.classList.remove('open');
-                }
-            });
+        if (header) {
+            header.addEventListener('click', () => {
+                // Se quiser fechar os outros ao abrir um novo:
+                categoryCards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        otherCard.classList.remove('open');
+                    }
+                });
 
-            card.classList.toggle('open');
-        });
+                card.classList.toggle('open');
+            });
+        }
     });
 
     // 3. Envio do Formulário Personalizado via WhatsApp
@@ -60,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const descricao = document.getElementById('form-descricao').value;
             const prazo = document.getElementById('form-prazo').value;
 
+            // Formatação com Crases (Template Literals)
             const mensagem = `Olá, meu nome é ${nome}.%0A%0A*Solicitação Personalizada:*%0A${descricao}%0A%0A*Email:* ${email}%0A*WhatsApp:* ${whatsapp}%0A*Prazo Desejado:* ${prazo}`;
 
             const urlWhatsapp = `https://wa.me/5573999049586?text=${mensagem}`;

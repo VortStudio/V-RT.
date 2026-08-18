@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VORT Studio | Atendimento</title>
 
-<!-- Tags para redes sociais e WhatsApp -->
-<meta property="og:title" content="VORT Studio | Atendimento">
-<meta property="og:description" content="Design que move ideias. Solicite seu projeto de forma simples e organizada.">
-<meta property="og:image" content="https://seudominio.com/assets/share-preview.png">
+    <!-- Tags para redes sociais e WhatsApp -->
+    <meta property="og:title" content="VORT Studio | Atendimento">
+    <meta property="og:description" content="Design que move ideias. Solicite seu projeto de forma simples e organizada.">
+    <meta property="og:image" content="https://seudominio.com/assets/share-preview.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,8 +18,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Fundo de Gradientes Animados -->
+  <div class="gradient-bg">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="40" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+          <feBlend in="SourceGraphic" in2="goo" />
+        </filter>
+      </defs>
+    </svg>
+    <div class="gradients-container">
+      <div class="g1"></div>
+      <div class="g2"></div>
+      <div class="g3"></div>
+      <div class="g4"></div>
+    </div>
+    <div class="interactive"></div>
+  </div>
 
-    <main class="main-container">
+  <main class="main-container">
 
         <!-- ===================================================================
              TELA 1: HOME
@@ -47,29 +66,21 @@
                     Uma seleção de projetos que traduzem ideias em identidade visual.
                 </p>
 
-<!-- Carrossel Infinito (Marquee) -->
-<div class="carousel-container">
-    <!-- Fileira 1: VORT -->
-    <div class="marquee-row slide-right">
-        <div class="marquee-track">
-            <img src="assets/project_vort.png" alt="Projeto VORT" class="project-img">
-        </div>
-    </div>
-
-    <!-- Fileira 2: Velouté -->
-    <div class="marquee-row slide-left">
-        <div class="marquee-track">
-            <img src="assets/project_veloute.png" alt="Projeto Velouté" class="project-img">
-        </div>
-    </div>
-
-    <!-- Fileira 3: Lumina Café -->
-    <div class="marquee-row slide-right">
-        <div class="marquee-track">
-            <img src="assets/project_lumina.png" alt="Projeto Lumina" class="project-img">
-        </div>
-    </div>
-</div>
+                <!-- Carrossel Infinito (Marquee) -->
+                <div class="carousel-container">
+                    <div class="marquee-row slide-right">
+                        <div class="marquee-track">
+                            <img src="assets/project_vort.png" alt="Projeto VORT" class="project-img">
+                        </div>
+                    </div>
+                    <div class="marquee-row slide-left">
+                        <div class="marquee-track">
+                            <img src="assets/project_veloute.png" alt="Projeto Velouté" class="project-img">
+                        </div>
+                    </div>
+                    <div class="marquee-row slide-right">
+                        <div class="marquee-track">
+                            <img src="assets/project_lumina.png" alt="Projeto Lumina" class="project-img">
                         </div>
                     </div>
                 </div>
@@ -91,9 +102,10 @@
 
                 <div class="card-actions">
                     <a href="#" class="btn-disabled">SOLICITAR PROJETO</a>
-                    <!-- Botão que abre a Tela 2 -->
-                    <button id="btn-go-atendimento" class="btn-arrow" aria-label="Acessar Atendimento">
-                        <img src="assets/icon_arrow.png" alt="Acessar">
+                    
+                    <!-- BOTÃO CORRIGIDO AQUI -->
+                    <button type="button" class="btn-next-screen" data-target="screen-atendimento" aria-label="Ir para atendimento">
+                        <img src="assets/icon_arrow.png" alt="Avançar" class="btn-arrow">
                     </button>
                 </div>
             </section>
@@ -134,7 +146,7 @@
         <section id="screen-atendimento" class="screen">
             <!-- Topo com botão Back Home e Título -->
             <header class="atendimento-header">
-                <button id="btn-back-home" class="btn-back" aria-label="Voltar para Home">
+                <button type="button" id="btn-back-home" class="btn-back" aria-label="Voltar para Home">
                     <img src="assets/icon_back_home.png" alt="Voltar Home">
                 </button>
                 <h1 class="atendimento-title">ATENDIMENTO</h1>
@@ -156,7 +168,7 @@
                             <h3 class="category-title">IDENTIDADE VISUAL</h3>
                             <p class="category-desc">Crie a marca perfeita e marcante para o seu negócio.</p>
                         </div>
-                        <button class="btn-toggle-category" aria-label="Expandir Categoria">
+                        <button type="button" class="btn-toggle-category" aria-label="Expandir Categoria">
                             <img src="assets/btn_more_services.png" alt="Abrir" class="toggle-icon">
                         </button>
                     </div>
@@ -179,7 +191,7 @@
                             <h3 class="category-title">MÍDIA SOCIAL</h3>
                             <p class="category-desc">Visual estratégico para dar destaque à sua rede social.</p>
                         </div>
-                        <button class="btn-toggle-category" aria-label="Expandir Categoria">
+                        <button type="button" class="btn-toggle-category" aria-label="Expandir Categoria">
                             <img src="assets/btn_more_services.png" alt="Abrir" class="toggle-icon">
                         </button>
                     </div>
@@ -201,7 +213,7 @@
                             <h3 class="category-title">MATERIAIS IMPRESSOS</h3>
                             <p class="category-desc">Papelaria e materiais para apresentação de alto impacto.</p>
                         </div>
-                        <button class="btn-toggle-category" aria-label="Expandir Categoria">
+                        <button type="button" class="btn-toggle-category" aria-label="Expandir Categoria">
                             <img src="assets/btn_more_services.png" alt="Abrir" class="toggle-icon">
                         </button>
                     </div>
@@ -222,7 +234,7 @@
                             <h3 class="category-title">EMBALAGENS E ETIQUETAS</h3>
                             <p class="category-desc">Design de embalagens para encantar e valorizar seu produto.</p>
                         </div>
-                        <button class="btn-toggle-category" aria-label="Expandir Categoria">
+                        <button type="button" class="btn-toggle-category" aria-label="Expandir Categoria">
                             <img src="assets/btn_more_services.png" alt="Abrir" class="toggle-icon">
                         </button>
                     </div>
@@ -242,7 +254,7 @@
                             <h3 class="category-title">CONVITES</h3>
                             <p class="category-desc">Design exclusivo e elegante para momentos especiais.</p>
                         </div>
-                        <button class="btn-toggle-category" aria-label="Expandir Categoria">
+                        <button type="button" class="btn-toggle-category" aria-label="Expandir Categoria">
                             <img src="assets/btn_more_services.png" alt="Abrir" class="toggle-icon">
                         </button>
                     </div>
@@ -262,7 +274,7 @@
                             <h3 class="category-title">CARDÁPIOS</h3>
                             <p class="category-desc">Design profissional para apresentação do seu menu.</p>
                         </div>
-                        <button class="btn-toggle-category" aria-label="Expandir Categoria">
+                        <button type="button" class="btn-toggle-category" aria-label="Expandir Categoria">
                             <img src="assets/btn_more_services.png" alt="Abrir" class="toggle-icon">
                         </button>
                     </div>
@@ -322,6 +334,6 @@
     </main>
 
     <!-- Script de Interatividade -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
 </body>
 </html>
